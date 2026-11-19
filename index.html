@@ -749,7 +749,7 @@ dialog video{width:100%;max-height:calc(100dvh - 110px);border-radius:10px;backg
     fN:'O seu nome',fM:'O que precisa?',fH:'A mensagem abre no WhatsApp já escrita. Só precisa de carregar em enviar.',fB:'Enviar pelo WhatsApp',phone:'Telefone',sendMsg:'Enviar mensagem',open:'Abrir ↗',copy:'Copiar',
     cmdHint:'Atalhos',top:'Voltar ao topo',cmdP:'Escreva um comando ou procure…',k1:'↑↓ navegar',k2:'Enter abrir',k3:'Esc fechar',close:'Fechar',cmdA:'Abrir comandos',themeA:'Mudar tema',
     emailC:'E-mail copiado',phoneC:'Número copiado',copied:'Copiado ✓',themeL:'Modo claro',themeD:'Modo escuro',langT:'Switch to English',empty:'Nenhum comando encontrado',
-    c1:'Ir para Projetos',c2:'Ir para Stack',c3:'Ir para Percurso',c4:'Ir para Contacto',c5:'Ver vídeo do nsERP',c6:'Ver vídeo do EduFuturo',c7:'Copiar e-mail',c8:'Abrir WhatsApp',c9:'Abrir GitHub',c11:'Abrir LinkedIn',c10:'Abrir currículo',
+    c1:'Ir para Projetos',c2:'Ir para Stack',c3:'Ir para Percurso',c4:'Ir para Contacto',c5:'Ver vídeo do nsERP',c6:'Ver vídeo do EduFuturo',c13:'Ver vídeo do nsEDU',c7:'Copiar e-mail',c8:'Abrir WhatsApp',c9:'Abrir GitHub',c11:'Abrir LinkedIn',c10:'Abrir currículo',
     words:['sistemas de gestão','aplicações web','plataformas de ensino','APIs e integrações','lojas online'],
     st:'Estudo Informática de Economia e <strong>Gestão</strong> e passo os dias a transformar processos de negócio em software. Vendas, facturas, stock, aulas online: sistemas que as pessoas usam <strong>todos os dias.</strong>',abSub:'Feitos da base de dados à interface, com atenção a quem os usa.',
     tyP:{ty1:'um sistema de gestão',ty2:'um site ou loja online',ty3:'uma aplicação web',ty4:'uma vaga de emprego para si',ty5:'um projeto',ty6:'uma API ou integração'},
@@ -766,7 +766,7 @@ dialog video{width:100%;max-height:calc(100dvh - 110px);border-radius:10px;backg
     fN:'Your name',fM:'What do you need?',fH:'The message opens in WhatsApp already written. Just press send.',fB:'Send via WhatsApp',phone:'Phone',sendMsg:'Send a message',open:'Open ↗',copy:'Copy',
     cmdHint:'Shortcuts',top:'Back to top',cmdP:'Type a command or search…',k1:'↑↓ navigate',k2:'Enter select',k3:'Esc close',close:'Close',cmdA:'Open commands',themeA:'Change theme',
     emailC:'Email copied',phoneC:'Number copied',copied:'Copied ✓',themeL:'Light mode',themeD:'Dark mode',langT:'Mudar para português',empty:'No commands found',
-    c1:'Go to Projects',c2:'Go to Stack',c3:'Go to Journey',c4:'Go to Contact',c5:'Watch nsERP video',c6:'Watch EduFuturo video',c7:'Copy email',c8:'Open WhatsApp',c9:'Open GitHub',c11:'Open LinkedIn',c10:'Open résumé',
+    c1:'Go to Projects',c2:'Go to Stack',c3:'Go to Journey',c4:'Go to Contact',c5:'Watch nsERP video',c6:'Watch EduFuturo video',c13:'Watch nsEDU video',c7:'Copy email',c8:'Open WhatsApp',c9:'Open GitHub',c11:'Open LinkedIn',c10:'Open résumé',
     words:['management systems','web applications','learning platforms','APIs and integrations','online stores'],
     st:'I study Computer Science for Economics and <strong>Management</strong> and spend my days turning business processes into software. Sales, invoices, stock, online classes: systems people use <strong>every day.</strong>',abSub:'Built from the database to the interface, with the people who use them in mind.',
     tyP:{ty1:'a management system',ty2:'a website or online store',ty3:'a web application',ty4:'a job opportunity for you',ty5:'a project',ty6:'an API or integration'},
@@ -1013,7 +1013,7 @@ void main(){
   const clickEl=sel=>{const el=document.querySelector(sel);if(el)el.click();};
   const cmds=()=>[
     {i:'↓',l:L().c1,r:()=>goTo('#projetos')},{i:'✦',l:L().c12,r:()=>goTo('#servicos')},{i:'◎',l:L().c2,r:()=>goTo('#stack')},{i:'↗',l:L().c3,r:()=>goTo('#percurso')},{i:'✉',l:L().c4,r:()=>goTo('#contacto')},
-    {i:'▶',l:L().c5,r:()=>clickEl('#caso-nserp .vbtn')},{i:'▶',l:L().c6,r:()=>clickEl('#caso-edu .vbtn')},
+    {i:'▶',l:L().c5,r:()=>clickEl('#caso-nserp .vbtn')},{i:'▶',l:L().c6,r:()=>clickEl('#caso-edu .vbtn')},{i:'▶',l:L().c13,r:()=>clickEl('#caso-nsedu .vbtn')},
     {i:'⧉',l:L().c7,r:()=>copyText('sultanenuryan8@gmail.com',L().emailC)},{i:'✆',l:L().c8,r:()=>clickEl('.c-row[href*="wa.me"]')},
     {i:'⌥',l:L().c9,r:()=>clickEl('.c-row[href*="github"]')},{i:'in',l:L().c11,r:()=>clickEl('.c-row[href*="linkedin"]')},{i:'⇩',l:L().c10,r:()=>clickEl('footer a[data-t-cv]')},
     {i:isLight()?'☾':'☀',l:isLight()?L().themeD:L().themeL,r:toggleTheme},{i:'⇄',l:L().langT,r:toggleLang}];
