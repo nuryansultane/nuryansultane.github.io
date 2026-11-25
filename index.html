@@ -335,6 +335,51 @@ h1,h2,h3,p,ul,ol{margin:0}
 
 /* services */
 .svc{padding-block:clamp(44px,5vw,76px)}
+/* processo: pinned horizontal scroll on wide screens */
+.proc{position:relative;overflow:hidden;padding-block:clamp(44px,5vw,76px)}
+.proc-track{display:flex;flex-direction:column;gap:14px;padding-inline:max(20px,calc((100vw - var(--max))/2 + 20px))}
+.pc{position:relative;display:flex;flex-direction:column;gap:12px;padding:clamp(20px,2.2vw,30px);border:1px solid var(--line);border-radius:22px;background:color-mix(in srgb,var(--bg2) 70%,transparent);overflow:hidden;opacity:.55;transition:opacity .6s,border-color .6s}
+.pc.is-on{opacity:1;border-color:color-mix(in srgb,var(--acc) 35%,var(--line))}
+.pc-top{display:flex;align-items:flex-end;justify-content:space-between;gap:16px}
+.pc-n{font-family:var(--display);font-weight:800;font-stretch:125%;font-size:clamp(3.2rem,6vw,5.6rem);line-height:.82;color:transparent;-webkit-text-stroke:1.5px color-mix(in srgb,var(--fg) 34%,transparent);display:inline-block}
+.pc.is-on .pc-n{-webkit-text-stroke-color:var(--acc)}
+.pc-tag{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.pc h3{font-family:var(--display);font-weight:700;font-stretch:112%;font-size:clamp(1.45rem,2.4vw,2.2rem);letter-spacing:-.02em;line-height:1.05}
+.pc p{color:var(--muted);max-width:44ch}
+.pc-vis{position:relative;margin-top:4px;border:1px solid #23262f;border-radius:14px;background:#0d0f14;color:#d9dcea;font-family:var(--mono);font-size:.78rem;line-height:1.7;padding:38px 16px 16px;min-height:208px;overflow:hidden}
+.pc-vis .vt{position:absolute;left:0;right:0;top:0;height:28px;display:flex;align-items:center;gap:6px;padding:0 12px;border-bottom:1px solid #23262f;color:#7c8293;font-size:.68rem;letter-spacing:.04em}
+.pc-vis .vt::before{content:"";width:8px;height:8px;border-radius:50%;background:#ff5f57;box-shadow:13px 0 0 #febc2e,26px 0 0 #28c840;margin-right:34px}
+.v-req ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.v-req li{display:flex;align-items:center;gap:10px;color:#9aa0b2;transition:color .4s}
+.v-req li i{flex:none;width:15px;height:15px;border-radius:4px;border:1.5px solid #3a3f52;display:grid;place-items:center;transition:background .35s,border-color .35s}
+.v-req li i::after{content:"";width:7px;height:4px;border:solid #fff;border-width:0 0 2px 2px;transform:rotate(-45deg) scale(0);margin-top:-2px;transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
+.pc.is-on .v-req li{color:#e6e8ef}
+.pc.is-on .v-req li i{background:var(--acc);border-color:var(--acc)}
+.pc.is-on .v-req li i::after{transform:rotate(-45deg) scale(1)}
+.v-db .db-l{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.v-db .db-l path{fill:none;stroke:#4f6bff;stroke-width:1.6;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1s ease .5s}
+.pc.is-on .v-db .db-l path{stroke-dashoffset:0}
+.v-db .tb{position:absolute;width:27%;border:1px solid #2b3040;border-radius:9px;background:#11141b;font-size:.7rem;line-height:1.55;overflow:hidden;transform:translateY(10px);opacity:0;transition:transform .6s,opacity .6s}
+.v-db .tb b{display:block;padding:4px 8px;background:#1a1f2e;color:#a9b6ff;font-weight:500}
+.v-db .tb span{display:block;padding:0 8px;color:#9aa0b2}
+.v-db .tb span:first-of-type{padding-top:3px}.v-db .tb span:last-child{padding-bottom:5px}
+.pc.is-on .v-db .tb{transform:none;opacity:1}
+.v-code .ln,.v-term .ln{display:block;white-space:pre;clip-path:inset(0 100% 0 0);transition:clip-path .55s steps(28,end)}
+.pc.is-on .v-code .ln,.pc.is-on .v-term .ln{clip-path:inset(0 0 0 0)}
+.v-code .k{color:#c792ea}.v-code .f{color:#82aaff}.v-code .t{color:#ffcb6b}.v-code .x{color:#7c8293}.v-ok{color:#3ecf8e}.v-term .p{color:#a9b6ff}.v-term .d{color:#7c8293}
+.proc-bar{display:none}
+@media(min-width:1000px){
+  .proc{height:100vh;height:100svh;padding:64px 0 0;display:flex;flex-direction:column;justify-content:center}
+  .proc>.wrap{width:100%}
+  .proc .sh{margin-bottom:clamp(22px,3vh,40px)}
+  .proc-track{flex-direction:row;gap:22px;width:max-content;will-change:transform}
+  .pc{width:min(44vw,600px)}
+  .proc-bar{display:flex;align-items:center;gap:16px;margin-top:clamp(18px,3vh,32px)}
+  .proc-bar .pb{position:relative;flex:1;height:2px;background:var(--line);border-radius:2px;overflow:hidden}
+  .proc-bar .pb i{position:absolute;inset:0;background:linear-gradient(90deg,var(--acc),var(--acc2));transform-origin:left;transform:scaleX(0)}
+}
+@media(min-width:1000px) and (max-height:780px){.pc-vis{min-height:170px;font-size:.72rem}.pc p{font-size:.92rem}.proc .sh h2{font-size:clamp(2.4rem,7vw,5.6rem)}}
+
 .svc-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
 @media(min-width:640px){.svc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(min-width:1100px){.svc-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
@@ -632,6 +677,25 @@ dialog video{width:100%;max-height:calc(100dvh - 110px);border-radius:10px;backg
   </div>
 </section>
 
+<section class="proc" id="processo">
+  <div class="wrap"><div class="sh"><h2 class="disp kin" data-th="procT">Proces<span class="o">so</span></h2><span class="mono" data-t="procS">Da ideia à publicação</span></div></div>
+  <div class="proc-track">
+    <article class="pc"><div class="pc-top"><span class="pc-n">01</span><span class="pc-tag" data-t="pc1t">Semana 1</span></div><h3 data-t="pc1h">Perceber o negócio</h3><p data-t="pc1p">Começo pelas pessoas e pelo processo: o que se vende, como se factura, onde se perde tempo. Sai daqui uma lista clara do que o sistema tem de fazer.</p>
+      <div class="pc-vis v-req" aria-hidden="true"><span class="vt">requisitos.md</span><ul><li><i></i><span data-t="pr1">Vendas e reservas num só lugar</span></li><li style="transition-delay:.12s"><i style="transition-delay:.12s"></i><span data-t="pr2">Factura com IVA automático</span></li><li style="transition-delay:.24s"><i style="transition-delay:.24s"></i><span data-t="pr3">Pagamentos por M-Pesa</span></li><li style="transition-delay:.36s"><i style="transition-delay:.36s"></i><span data-t="pr4">Relatórios do mês</span></li><li style="transition-delay:.48s"><i style="transition-delay:.48s"></i><span data-t="pr5">Funciona no telemóvel</span></li></ul></div></article>
+    <article class="pc"><div class="pc-top"><span class="pc-n">02</span><span class="pc-tag" data-t="pc2t">Antes do 1.º ecrã</span></div><h3 data-t="pc2h">Desenhar os dados</h3><p data-t="pc2p">Modelo a base de dados antes de desenhar ecrãs. Tabelas, relações e regras certas evitam erros caros mais tarde.</p>
+      <div class="pc-vis v-db" aria-hidden="true"><span class="vt">schema.sql</span>
+        <svg class="db-l" viewBox="0 0 100 100" preserveAspectRatio="none"><path pathLength="1" vector-effect="non-scaling-stroke" d="M31 42 C35 42 34 62 38 62"/><path pathLength="1" vector-effect="non-scaling-stroke" d="M65 62 C69 62 68 40 72 40"/></svg>
+        <div class="tb" style="left:4%;top:24%"><b>clientes</b><span>id</span><span>nome</span><span>nuit</span></div>
+        <div class="tb" style="left:37%;top:44%;transition-delay:.15s"><b>facturas</b><span>id</span><span>cliente_id</span><span>total_iva</span></div>
+        <div class="tb" style="left:70%;top:22%;transition-delay:.3s"><b>pagamentos</b><span>factura_id</span><span>metodo</span><span>valor</span></div></div></article>
+    <article class="pc"><div class="pc-top"><span class="pc-n">03</span><span class="pc-tag" data-t="pc3t">Laravel · React · TS</span></div><h3 data-t="pc3h">Construir e testar</h3><p data-t="pc3p">Laravel no servidor, React e TypeScript na interface. Cada regra importante tem um teste automático.</p>
+      <div class="pc-vis v-code" aria-hidden="true"><span class="vt">Factura.tsx</span><span class="ln"><span class="k">export function</span> <span class="f">Factura</span>({ f }: <span class="t">Props</span>) {</span><span class="ln" style="transition-delay:.25s">  <span class="k">const</span> total = <span class="f">somaComIVA</span>(f.linhas)</span><span class="ln" style="transition-delay:.5s">  <span class="k">return</span> &lt;<span class="t">Card</span>&gt;{<span class="f">mt</span>(total)}&lt;/<span class="t">Card</span>&gt;</span><span class="ln" style="transition-delay:.75s">}</span><span class="ln x" style="transition-delay:1s"> </span><span class="ln v-ok" style="transition-delay:1.15s">✓ 310 testes passaram</span></div></article>
+    <article class="pc"><div class="pc-top"><span class="pc-n">04</span><span class="pc-tag" data-t="pc4t">E depois</span></div><h3 data-t="pc4h">Publicar e acompanhar</h3><p data-t="pc4p">Publico, formo a equipa que vai usar o sistema e continuo por perto para ajustar o que for preciso.</p>
+      <div class="pc-vis v-term" aria-hidden="true"><span class="vt">deploy</span><span class="ln"><span class="p">$</span> git push origin main</span><span class="ln v-ok" style="transition-delay:.3s">✓ testes</span><span class="ln v-ok" style="transition-delay:.55s">✓ build</span><span class="ln v-ok" style="transition-delay:.8s">✓ em produção</span><span class="ln d" style="transition-delay:1.05s" data-t="pt1">→ formação da equipa</span><span class="ln d" style="transition-delay:1.3s" data-t="pt2">→ suporte e ajustes</span></div></article>
+  </div>
+  <div class="wrap proc-bar" aria-hidden="true"><span class="pb"><i></i></span><span class="mono pc-count">01 / 04</span></div>
+</section>
+
 <section class="stack" id="stack">
   <div class="wrap">
     <div class="sh"><h2 class="disp kin">Sta<span class="o">ck</span></h2><span class="mono" data-t="drag">Arraste a esfera</span></div>
@@ -742,7 +806,7 @@ dialog video{width:100%;max-height:calc(100dvh - 110px);border-radius:10px;backg
     skip:'Saltar para os projetos',f1:'sistemas completos, feitos de ponta a ponta',f2:'testes automáticos nos três projetos',f3:'ecrãs desenhados e programados',f4:'línguas no EduFuturo, com changana e sena',cvT:'Ver o currículo',cvS:'1 página · atualizado em novembro de 2026',
     n5:'Serviços',c12:'Ir para Serviços',svcT:'Servi<span class="o">ços</span>',svcS:'Como posso ajudar',sv1h:'Sistemas de gestão',sv1p:'ERPs à medida: vendas, facturação, stock, reservas e relatórios.',sv2h:'Aplicações web',sv2p:'Plataformas completas com Laravel e React, prontas para muitos utilizadores.',sv3h:'Sites e lojas online',sv3p:'Sites rápidos e lojas ligadas ao stock, com pedidos e pagamentos.',sv4h:'APIs e integrações',sv4p:'Pagamentos por M‑Pesa, exportações e ligação a outros sistemas.',svGo:'Pedir orçamento',ty6:'API ou integração',
     ld:'Portfólio · 2026',n1:'Projetos',n3:'Percurso',n4:'Contacto',h1:'Programador full-stack em Moçambique. Construo',h2:'para empresas e escolas.',avail:'Disponível',mz:'Moçambique',
-    b1:'Ver projetos',b2:'Currículo',hf1:'<b>2</b> sistemas completos',hf2:'<b>480+</b> testes automáticos',hf3:'<b>4.º ano</b> de Informática',scroll:'Role',about:'(Sobre)',projT:'Proje<span class="o">tos</span>',drag:'Arraste a esfera',g1:'Linguagens',g2:'Frameworks e bibliotecas',g3:'Dados, ferramentas e integrações',
+    b1:'Ver projetos',b2:'Currículo',procT:'Proces<span class="o">so</span>',procS:'Da ideia à publicação',pc1t:'Semana 1',pc1h:'Perceber o negócio',pc1p:'Começo pelas pessoas e pelo processo: o que se vende, como se factura, onde se perde tempo. Sai daqui uma lista clara do que o sistema tem de fazer.',pc2t:'Antes do 1.º ecrã',pc2h:'Desenhar os dados',pc2p:'Modelo a base de dados antes de desenhar ecrãs. Tabelas, relações e regras certas evitam erros caros mais tarde.',pc3t:'Laravel · React · TS',pc3h:'Construir e testar',pc3p:'Laravel no servidor, React e TypeScript na interface. Cada regra importante tem um teste automático.',pc4t:'E depois',pc4h:'Publicar e acompanhar',pc4p:'Publico, formo a equipa que vai usar o sistema e continuo por perto para ajustar o que for preciso.',pr1:'Vendas e reservas num só lugar',pr2:'Factura com IVA automático',pr3:'Pagamentos por M-Pesa',pr4:'Relatórios do mês',pr5:'Funciona no telemóvel',pt1:'→ formação da equipa',pt2:'→ suporte e ajustes',hf1:'<b>2</b> sistemas completos',hf2:'<b>480+</b> testes automáticos',hf3:'<b>4.º ano</b> de Informática',scroll:'Role',about:'(Sobre)',projT:'Proje<span class="o">tos</span>',drag:'Arraste a esfera',g1:'Linguagens',g2:'Frameworks e bibliotecas',g3:'Dados, ferramentas e integrações',
     pathT:'Percur<span class="o">so</span>',pathS:'Experiência e formação',tl1w:'ATUAL',tl1h:'Programador full-stack, independente',tl1p:'Sistemas e aplicações à medida para empresas e escolas, do levantamento de requisitos à publicação.',
     tl2h:'nsERP e EduFuturo Digital',tl2p:'Concebi e desenvolvi os dois sistemas de ponta a ponta com Laravel, React e TypeScript. O nsERP é o meu projeto de monografia, testado na LemServices.',tlG1:'Experiência',tlG2:'Formação',tl4h:'Assistente de gestor e decorador',tl4p:'Apoio à gestão do dia a dia e decoração de espaços e eventos. É a empresa onde o nsERP foi testado em contexto real.',tl5w:'10.ª–12.ª CLASSE',tl5h:'Escola Comunitária Margarida Naseau',tl5p:'Ensino secundário geral, da 10.ª à 12.ª classe.',tl3w:'EM CURSO · 4.º ANO',tl3h:'Licenciatura em Informática de Economia e Gestão',tl3p:'Programação, bases de dados e sistemas de informação, a par de economia, contabilidade e gestão.',
     cS:'(Contacto) · respondo em até 24 horas',cta1:'Vamos',cta2:'falar',fT:'Conte-me sobre o seu projeto',ty1:'Sistema de gestão',ty2:'Site ou loja online',ty3:'Aplicação web',ty4:'Vaga de emprego',ty5:'Outro',
@@ -759,7 +823,7 @@ dialog video{width:100%;max-height:calc(100dvh - 110px);border-radius:10px;backg
     skip:'Skip to projects',f1:'complete systems, built end to end',f2:'automated tests across the three projects',f3:'screens designed and coded',f4:'languages in EduFuturo, with Changana and Sena',cvT:'See my résumé',cvS:'1 page · updated November 2026',
     n5:'Services',c12:'Go to Services',svcT:'Ser<span class="o">vices</span>',svcS:'How I can help',sv1h:'Management systems',sv1p:'Custom ERPs: sales, invoicing, stock, bookings and reports.',sv2h:'Web applications',sv2p:'Complete platforms with Laravel and React, ready for many users.',sv3h:'Websites and online stores',sv3p:'Fast websites and stores linked to stock, with orders and payments.',sv4h:'APIs and integrations',sv4p:'M‑Pesa payments, exports and connections to other systems.',svGo:'Request a quote',ty6:'API or integration',
     ld:'Portfolio · 2026',n1:'Projects',n3:'Journey',n4:'Contact',h1:'Full-stack developer in Mozambique. I build',h2:'for companies and schools.',avail:'Available',mz:'Mozambique',
-    b1:'See projects',b2:'Résumé',hf1:'<b>2</b> complete systems',hf2:'<b>480+</b> automated tests',hf3:'<b>4th year</b> of Computer Science',scroll:'Scroll',about:'(About)',projT:'Pro<span class="o">jects</span>',drag:'Drag the sphere',g1:'Languages',g2:'Frameworks and libraries',g3:'Data, tools and integrations',
+    b1:'See projects',b2:'Résumé',procT:'Pro<span class="o">cess</span>',procS:'From idea to launch',pc1t:'Week 1',pc1h:'Understand the business',pc1p:'I start with the people and the process: what is sold, how it is invoiced, where time gets lost. The result is a clear list of what the system must do.',pc2t:'Before the 1st screen',pc2h:'Design the data',pc2p:'I model the database before designing screens. The right tables, relations and rules avoid costly mistakes later.',pc3t:'Laravel · React · TS',pc3h:'Build and test',pc3p:'Laravel on the server, React and TypeScript on the interface. Every important rule has an automated test.',pc4t:'Then',pc4h:'Launch and support',pc4p:'I launch it, train the team who will use it and stay close to adjust whatever is needed.',pr1:'Sales and bookings in one place',pr2:'Invoices with automatic VAT',pr3:'M-Pesa payments',pr4:'Monthly reports',pr5:'Works on the phone',pt1:'→ team training',pt2:'→ support and tweaks',hf1:'<b>2</b> complete systems',hf2:'<b>480+</b> automated tests',hf3:'<b>4th year</b> of Computer Science',scroll:'Scroll',about:'(About)',projT:'Pro<span class="o">jects</span>',drag:'Drag the sphere',g1:'Languages',g2:'Frameworks and libraries',g3:'Data, tools and integrations',
     pathT:'Jour<span class="o">ney</span>',pathS:'Experience and education',tl1w:'NOW',tl1h:'Full-stack developer, freelance',tl1p:'Custom systems and applications for companies and schools, from requirements to launch.',
     tl2h:'nsERP and EduFuturo Digital',tl2p:'I designed and built both systems end to end with Laravel, React and TypeScript. nsERP is my thesis project, piloted at LemServices.',tlG1:'Experience',tlG2:'Education',tl4h:'Assistant to the manager and decorator',tl4p:'Supported day-to-day management and decorated venues and events. It is the company where nsERP was piloted in real conditions.',tl5w:'GRADES 10–12',tl5h:'Margarida Naseau Community School',tl5p:'General secondary education, grades 10 to 12.',tl3w:'IN PROGRESS · 4TH YEAR',tl3h:'Degree in Computer Science for Economics and Management',tl3p:'Programming, databases and information systems, alongside economics, accounting and management.',
     cS:'(Contact) · I reply within 24 hours',cta1:"Let's",cta2:'talk',fT:'Tell me about your project',ty1:'Management system',ty2:'Website or online store',ty3:'Web application',ty4:'Job opportunity',ty5:'Other',
@@ -944,9 +1008,9 @@ void main(){
 
   /* logo rails driven by scroll velocity */
   const rails=[...document.querySelectorAll('.rail')].map(r=>({el:r,x:0,dir:+r.dataset.dir}));
-  let vel=0,last=scrollY,flip=1;
+  let vel=0,last=scrollY,flip=1,lean=0,leanT=0;
   if(!reduce)(function loop(){const d=scrollY-last;last=scrollY;vel+=(Math.abs(d)-vel)*.1;if(d)flip=d>0?1:-1;
-    rails.forEach(r=>{const half=r.el.scrollWidth/2;r.x+=(.6+vel*.35)*r.dir*flip;if(r.x<-half)r.x+=half;if(r.x>0)r.x-=half;r.el.style.transform=`translate3d(${r.x}px,0,0)`;});requestAnimationFrame(loop);})();
+    lean+=(leanT-lean)*.12;leanT*=.92;rails.forEach(r=>{const half=r.el.scrollWidth/2;r.x+=(.6+vel*.35)*r.dir*flip;if(r.x<-half)r.x+=half;if(r.x>0)r.x-=half;r.el.style.transform=`translate3d(${r.x}px,0,0) skewX(${(lean*r.dir).toFixed(2)}deg)`;});requestAnimationFrame(loop);})();
 
   /* progress bar */
   const navEl=document.querySelector('.nav'),navLinks=[...document.querySelectorAll('.nav nav a')],navInd=document.getElementById('navInd');
@@ -1039,7 +1103,7 @@ void main(){
 
   applyLang();
 
-  if(reduce||!window.gsap){root.classList.remove('loading','trace');return;}
+  if(reduce||!window.gsap){root.classList.remove('loading','trace');document.querySelectorAll('.pc').forEach(p=>p.classList.add('is-on'));return;}
   gsap.registerPlugin(ScrollTrigger);
   if(window.Lenis){lenis=new Lenis({duration:1.15,smoothWheel:true});lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);
     document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();lenis.scrollTo(t);}}));}
@@ -1092,9 +1156,14 @@ void main(){
         if(ty>=0&&ty!==typed&&ty<=LINE.length+OK.length){typed=ty;chip.classList.add('on');
           chip.innerHTML='<span>'+LINE.slice(0,ty)+'</span>'+(ty>LINE.length?'<b>'+OK.slice(0,ty-LINE.length)+'</b>':'')+'<i></i>';}
         if(t<T_END)requestAnimationFrame(frame);
-        else{ph.classList.remove('tracing','scanning');cv.style.opacity='0';
+        else{ph.classList.remove('tracing','scanning');ph.style.setProperty('--sy','108%');
           setTimeout(()=>{chip.classList.remove('on');},2600);
-          setTimeout(()=>{[cv,scan,chip].forEach(n=>n.remove());},3400);}
+          setTimeout(()=>chip.remove(),3400);
+          /* scrolling away writes the photo back into code, from the bottom up */
+          const o={v:0};
+          gsap.to(o,{v:1,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom 15%',scrub:.5},onUpdate:()=>{const v=o.v;
+            if(v<.002){ph.classList.remove('tracing','scanning');ph.style.setProperty('--sy','108%');return;}
+            ph.classList.add('tracing');ph.classList.toggle('scanning',v<.985);ph.style.setProperty('--sy',(108-ease(v)*96).toFixed(2)+'%');}});}
       };
       requestAnimationFrame(frame);
     };
@@ -1131,6 +1200,26 @@ void main(){
   gsap.to('.h-ghost',{yPercent:-10,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
   gsap.fromTo('#galaxy',{scale:.6,rotate:-30},{scale:1,rotate:0,ease:'none',scrollTrigger:{trigger:'#contacto',start:'top bottom',end:'top 20%',scrub:true}});
   gsap.to('#hero .wrap',{opacity:.2,y:-60,ease:'none',scrollTrigger:{trigger:'#hero',start:'center top',end:'bottom top',scrub:true}});
+
+  /* rails lean with the scroll speed */
+  ScrollTrigger.create({start:0,end:'max',onUpdate:st=>{leanT=Math.max(-9,Math.min(9,st.getVelocity()/-260));}});
+
+  /* processo: pinned horizontal scroll on wide screens, stacked cards on phones */
+  (function(){const sec=document.getElementById('processo');if(!sec)return;
+    const track=sec.querySelector('.proc-track'),panels=[...sec.querySelectorAll('.pc')],fill=sec.querySelector('.proc-bar i'),cnt=sec.querySelector('.pc-count');
+    const on=p=>p.classList.add('is-on'),pad=n=>String(n).padStart(2,'0');
+    const mm=gsap.matchMedia();
+    mm.add('(min-width: 1000px)',()=>{
+      const dist=()=>Math.max(0,track.scrollWidth-document.documentElement.clientWidth);
+      const tw=gsap.to(track,{x:()=>-dist(),ease:'none',scrollTrigger:{trigger:sec,pin:true,start:'top top',end:()=>'+='+dist(),scrub:.6,invalidateOnRefresh:true,anticipatePin:1,refreshPriority:1,
+        onEnter:()=>on(panels[0]),onEnterBack:()=>on(panels[0]),
+        onUpdate:st=>{fill.style.transform='scaleX('+st.progress.toFixed(4)+')';cnt.textContent=pad(Math.min(panels.length,1+Math.floor(st.progress*panels.length*.999)))+' / '+pad(panels.length);}}});
+      panels.forEach((p,i)=>{if(i)ScrollTrigger.create({trigger:p,containerAnimation:tw,start:'left 72%',onEnter:()=>on(p)});
+        gsap.fromTo(p.querySelector('.pc-n'),{xPercent:35},{xPercent:-8,ease:'none',scrollTrigger:{trigger:p,containerAnimation:tw,start:'left right',end:'right left',scrub:true}});});
+      ScrollTrigger.create({trigger:sec,start:'top 70%',onEnter:()=>on(panels[0])});
+    });
+    mm.add('(max-width: 999px)',()=>{panels.forEach(p=>ScrollTrigger.create({trigger:p,start:'top 78%',onEnter:()=>on(p)}));});
+  })();
 
   /* statement words light up */
   gsapReady=true;setStatement();
